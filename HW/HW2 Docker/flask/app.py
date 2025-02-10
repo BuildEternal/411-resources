@@ -1,7 +1,7 @@
-from flask import Flask, make_response
+from flask import Flask, make_response, request
 import os
 
-port = int(os.getenv("PORT"))
+port = int(os.getenv('PORT'))
 
 app = Flask(__name__)
 
@@ -10,6 +10,16 @@ def hello():
     response = make_response(
         {
             'response': 'Hello, World!',
+            'status': 200
+        }
+    )
+    return response
+
+@app.route('/repeat')
+def repeat():
+    response = make_response(
+        {
+            'body': request.args.get("input", "No input given!"),
             'status': 200
         }
     )
