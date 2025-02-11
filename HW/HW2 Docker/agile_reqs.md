@@ -1,0 +1,10 @@
+- Theme: Get GiggleGit demo into a stable enough alpha to start onboarding some adventurous clients
+- Epic: Onboarding experience
+- User story 1: As a vanilla git power-user that has never seen GiggleGit before, I want to know how it differs from Git, how to use it, and how to easily integrate it into projects without difficulty.
+- User story 2: As a team lead onboarding an experienced GiggleGit user, I want to manage my team's permissions and ensure they can collaborate well.
+- User story 3: As a junior developer contributing to a team project on GiggleGit, I want to understand merge decisions made by senior developers so I can learn best practices and avoid mistakes.
+  - Task: Improve merge decision visibility
+    - Ticket 1: Create a merge explanation feature
+      - Implement a system where senior developers can annotate merge decisions with explanations or reasoning, visible in the merge history.
+    - Ticket 2: Add merge history filtering
+      - Allow users to filter merge history by contributor, date, or conflict type to easily review relevant past decisions.
