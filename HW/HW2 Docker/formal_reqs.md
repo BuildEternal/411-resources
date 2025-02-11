@@ -1,0 +1,12 @@
+- Goal: We want the user study to be able to properly test different snickering concepts by assigning participants randomly.
+- Non-Goal: We don't want to focus on perfecting the UI for SnickerSync.
+- Non-Functional Req. 1: PMs must be able to create, update, and manage different snickering concepts.
+  - Functional Req. 1: Build a Snickering Concept Management UI
+    - We should provide a basic (emphasis on basic) web interface where PMs can define, edit, and archive snickering concepts.
+  - Functional Req. 2: Implement version control for snickering concepts
+    - We want changes to snickering concepts to be tracked, which allows PMs to roll back to previous versions if necessary.
+- Non-Functional Req. 2: The user study must randomly assign participants to control and variant groups while ensuring balance.
+  - Functional Req. 3: Develop a randomization algorithm
+    - We need to create an automated system that assigns users to groups based on predefined study parameters, ensuring an even split.
+  - Functional Req. 4: Log and track user assignments
+    - We need to be able to store assignment data in a database so it is available for analysis when the study is complete.
