@@ -522,7 +522,7 @@ rewind_playlist
 
 play_entire_playlist
 play_current_song
-go-go_to_random_track
+go_to_random_track
 play_rest_of_playlist
 
 get_song_leaderboard
