@@ -41,5 +41,5 @@ fi
 
 # Run the Docker container with the necessary ports and volume mappings
 echo "Running Docker container..."
-docker run -d -p ${HOST_PORT}:${HOST_PORT} --name ${IMAGE_NAME}_container ${IMAGE_NAME}:${IMAGE_TAG}
+docker run -d -p ${HOST_PORT}:${HOST_PORT} --name ${IMAGE_NAME}_container -v ${DB_VOLUME_PATH}:/app/db ${IMAGE_NAME}:${IMAGE_TAG}
 echo "Docker container is running on port ${HOST_PORT}."
