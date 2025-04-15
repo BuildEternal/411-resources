@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the base URL for the Flask API
-BASE_URL="http://localhost:5000/api"
+BASE_URL="http://localhost:5001/api"
 
 # Flag to control whether to echo JSON output
 ECHO_JSON=false
@@ -522,7 +522,7 @@ rewind_playlist
 
 play_entire_playlist
 play_current_song
-go-go_to_random_track
+go_to_random_track
 play_rest_of_playlist
 
 get_song_leaderboard
