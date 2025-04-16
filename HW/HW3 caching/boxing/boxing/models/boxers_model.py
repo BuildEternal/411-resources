@@ -21,15 +21,17 @@ class Boxers(db.Model):
 
     """
 
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), unique=True, nullable=False)
+    __tablename__ = 'boxers'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String, unique=True, nullable=False)
     weight = db.Column(db.Float, nullable=False)
     height = db.Column(db.Float, nullable=False)
     reach = db.Column(db.Float, nullable=False)
     age = db.Column(db.Integer, nullable=False)
-    weight_class = db.Column(db.String(50))
-    fights = db.Column(db.Integer, default=0)
-    wins = db.Column(db.Integer, default=0)
+    fights = db.Column(db.Integer, nullable=False, default=0)
+    wins = db.Column(db.Integer, nullable=False, default=0)
+    weight_class = db.Column(db.String)
 
     def __init__(self, name: str, weight: float, height: float, reach: float, age: int):
         """Initialize a new Boxer instance with basic attributes.
@@ -142,10 +144,11 @@ class Boxers(db.Model):
             ValueError: If the boxer with the given ID does not exist.
 
         """
-        boxer = cls.query.get(boxer_id)
+        boxer = db.session.get(cls, boxer_id)
 
         if boxer is None:
             logger.info(f"Boxer with ID {boxer_id} not found.")
+            raise ValueError(f"Boxer with ID {boxer_id} not found.")
 
         return boxer
 
@@ -167,6 +170,7 @@ class Boxers(db.Model):
 
         if boxer is None:
             logger.info(f"Boxer '{name}' not found.")
+            raise ValueError(f"Boxer '{name}' not found.")
 
         return boxer
 
