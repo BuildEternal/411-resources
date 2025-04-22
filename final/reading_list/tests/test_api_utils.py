@@ -1,7 +1,7 @@
 import pytest
 import requests
 
-from readinglist.utils.api_utils import get_random
+from reading_list.utils.api_utils import get_random
 
 
 RANDOM_NUMBER = 4

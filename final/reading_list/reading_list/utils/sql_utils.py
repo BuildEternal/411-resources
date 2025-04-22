@@ -3,7 +3,7 @@ import logging
 import os
 import sqlite3
 
-from readinglist.utils.logger import configure_logger
+from reading_list.utils.logger import configure_logger
 
 
 logger = logging.getLogger(__name__)

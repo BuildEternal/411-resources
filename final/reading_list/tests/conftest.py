@@ -2,7 +2,7 @@ import pytest
 
 from app import create_app
 from config import TestConfig
-from readinglist.db import db
+from reading_list.db import db
 
 @pytest.fixture
 def app():

@@ -2,9 +2,9 @@ import logging
 
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 
-from readinglist.db import db
-from readinglist.utils.logger import configure_logger
-from readinglist.utils.api_utils import get_random
+from reading_list.db import db
+from reading_list.utils.logger import configure_logger
+from reading_list.utils.api_utils import get_random
 
 
 logger = logging.getLogger(__name__)
