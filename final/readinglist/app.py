@@ -4,11 +4,11 @@ from flask_login import LoginManager, login_user, logout_user, login_required, c
 
 from config import ProductionConfig
 
-from playlist.db import db
-from playlist.models.song_model import Songs
-from playlist.models.playlist_model import PlaylistModel
-from playlist.models.user_model import Users
-from playlist.utils.logger import configure_logger
+from readinglist.db import db
+from final.readinglist.readinglist.models.book_model import Songs
+from final.readinglist.readinglist.models.readinglist_model import PlaylistModel
+from readinglist.models.user_model import Users
+from readinglist.utils.logger import configure_logger
 
 
 load_dotenv()
