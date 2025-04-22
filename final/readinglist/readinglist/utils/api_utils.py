@@ -2,7 +2,7 @@ import logging
 import os
 import requests
 
-from reading_list.utils.logger import configure_logger
+from readinglist.utils.logger import configure_logger
 
 
 RANDOM_ORG_BASE_URL = os.getenv("RANDOM_ORG_BASE_URL",

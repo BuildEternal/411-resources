@@ -3,7 +3,7 @@ import logging
 import os
 import sqlite3
 
-from reading_list.utils.logger import configure_logger
+from readinglist.utils.logger import configure_logger
 
 
 logger = logging.getLogger(__name__)
@@ -11,7 +11,7 @@ configure_logger(logger)
 
 
 # load the db path from the environment with a default value
-DB_PATH = os.getenv("DB_PATH", "/app/sql/playlist.db")
+DB_PATH = os.getenv("DB_PATH", "/app/sql/reading_list.db")
 
 
 def check_database_connection():

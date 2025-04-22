@@ -5,8 +5,8 @@ import os
 from flask_login import UserMixin
 from sqlalchemy.exc import IntegrityError
 
-from reading_list.db import db
-from reading_list.utils.logger import configure_logger
+from readinglist.db import db
+from readinglist.utils.logger import configure_logger
 
 
 logger = logging.getLogger(__name__)

@@ -3,9 +3,9 @@ import os
 import time
 from typing import List
 
-from final.reading_list.reading_list.models.book_model import Books
-from reading_list.utils.api_utils import get_random
-from reading_list.utils.logger import configure_logger
+from readinglist.models.book_model import Books
+from readinglist.utils.api_utils import get_random
+from readinglist.utils.logger import configure_logger
 
 logger = logging.getLogger(__name__)
 configure_logger(logger)

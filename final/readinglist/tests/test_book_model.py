@@ -1,6 +1,6 @@
 import pytest
 
-from final.readinglist.readinglist.models.book_model import Books
+from readinglist.models.book_model import Books
 
 
 # --- Fixtures ---

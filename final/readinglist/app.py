@@ -4,11 +4,11 @@ from flask_login import LoginManager, login_user, logout_user, login_required, c
 
 from config import ProductionConfig
 
-from reading_list.db import db
-from reading_list.models.book_model import Books
-from reading_list.models.reading_list_model import ReadingListModel
-from reading_list.models.user_model import Users
-from reading_list.utils.logger import configure_logger
+from readinglist.db import db
+from readinglist.models.book_model import Books
+from final.readinglist.readinglist.models.readinglist_model import ReadingListModel
+from readinglist.models.user_model import Users
+from readinglist.utils.logger import configure_logger
 
 
 load_dotenv()

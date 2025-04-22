@@ -1,6 +1,6 @@
 import pytest
 
-from reading_list.models.user_model import Users
+from readinglist.models.user_model import Users
 
 
 @pytest.fixture
