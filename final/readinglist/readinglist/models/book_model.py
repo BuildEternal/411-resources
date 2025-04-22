@@ -15,9 +15,9 @@ class Books(db.Model):
     """Represents a book in the catalog.
 
     This model maps to the 'books' table and stores metadata such as author,
-    title, genre, release year, and length. It also tracks play count.
+    title, genre, release year, and length. It also tracks read count.
 
-    Used in a Flask-SQLAlchemy application for playlist management,
+    Used in a Flask-SQLAlchemy application for readlist management,
     user interaction, and data-driven book operations.
     """
 
@@ -29,7 +29,7 @@ class Books(db.Model):
     year = db.Column(db.Integer, nullable=False)
     genre = db.Column(db.String, nullable=False)
     length = db.Column(db.Integer, nullable=False)
-    play_count = db.Column(db.Integer, nullable=False, default=0)
+    read_count = db.Column(db.Integer, nullable=False, default=0)
 
     def validate(self) -> None:
         """Validates the book instance before committing to the database.
@@ -38,7 +38,7 @@ class Books(db.Model):
             ValueError: If any required fields are invalid.
         """
         if not self.author or not isinstance(self.author, str):
-            raise ValueError("Artist must be a non-empty string.")
+            raise ValueError("Author must be a non-empty string.")
         if not self.title or not isinstance(self.title, str):
             raise ValueError("Title must be a non-empty string.")
         if not isinstance(self.year, int) or self.year <= 1900:
@@ -46,7 +46,7 @@ class Books(db.Model):
         if not self.genre or not isinstance(self.genre, str):
             raise ValueError("Genre must be a non-empty string.")
         if not isinstance(self.length, int) or self.length <= 0:
-            raise ValueError("Duration must be a positive integer.")
+            raise ValueError("Length must be a positive integer.")
 
     @classmethod
     def create_book(cls, author: str, title: str, year: int, genre: str, length: int) -> None:
@@ -197,15 +197,15 @@ class Books(db.Model):
             raise
 
     @classmethod
-    def get_all_books(cls, sort_by_play_count: bool = False) -> list[dict]:
+    def get_all_books(cls, sort_by_read_count: bool = False) -> list[dict]:
         """
         Retrieves all books from the catalog as dictionaries.
 
         Args:
-            sort_by_play_count (bool): If True, sort the books by play count in descending order.
+            sort_by_read_count (bool): If True, sort the books by read count in descending order.
 
         Returns:
-            list[dict]: A list of dictionaries representing all books with play_count.
+            list[dict]: A list of dictionaries representing all books with read_count.
 
         Raises:
             SQLAlchemyError: If any database error occurs.
@@ -214,8 +214,8 @@ class Books(db.Model):
 
         try:
             query = cls.query
-            if sort_by_play_count:
-                query = query.order_by(cls.play_count.desc())
+            if sort_by_read_count:
+                query = query.order_by(cls.read_count.desc())
 
             books = query.all()
 
@@ -231,7 +231,7 @@ class Books(db.Model):
                     "year": book.year,
                     "genre": book.genre,
                     "length": book.length,
-                    "play_count": book.play_count,
+                    "read_count": book.read_count,
                 }
                 for book in books
             ]
@@ -264,27 +264,27 @@ class Books(db.Model):
 
     def update_read_count(self) -> None:
         """
-        Increments the play count of the current book instance.
+        Increments the read count of the current book instance.
 
         Raises:
             ValueError: If the book does not exist in the database.
             SQLAlchemyError: If any database error occurs.
         """
 
-        logger.info(f"Attempting to update play count for book with ID {self.id}")
+        logger.info(f"Attempting to update read count for book with ID {self.id}")
 
         try:
             book = Books.query.get(self.id)
             if not book:
-                logger.warning(f"Cannot update play count: Book with ID {self.id} not found.")
+                logger.warning(f"Cannot update read count: Book with ID {self.id} not found.")
                 raise ValueError(f"Book with ID {self.id} not found")
 
-            book.play_count += 1
+            book.read_count += 1
             db.session.commit()
 
-            logger.info(f"Play count incremented for book with ID: {self.id}")
+            logger.info(f"Read count incremented for book with ID: {self.id}")
 
         except SQLAlchemyError as e:
-            logger.error(f"Database error while updating play count for book with ID {self.id}: {e}")
+            logger.error(f"Database error while updating read count for book with ID {self.id}: {e}")
             db.session.rollback()
             raise
