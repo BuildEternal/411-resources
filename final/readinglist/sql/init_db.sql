@@ -1,15 +1,15 @@
-DROP TABLE IF EXISTS songs;
-CREATE TABLE songs (
+DROP TABLE IF EXISTS books;
+CREATE TABLE books (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    artist TEXT NOT NULL,
+    author TEXT NOT NULL,
     title TEXT NOT NULL,
     year INTEGER NOT NULL CHECK(year >= 1900),
     genre TEXT NOT NULL,
-    duration INTEGER NOT NULL CHECK(duration > 0),
-    play_count INTEGER DEFAULT 0,
-    UNIQUE(artist, title, year)
+    length INTEGER NOT NULL CHECK(length > 0),
+    read_count INTEGER DEFAULT 0,
+    UNIQUE(author, title, year)
 );
 
-CREATE INDEX idx_songs_artist_title ON songs(artist, title);
-CREATE INDEX idx_songs_year ON songs(year);
-CREATE INDEX idx_songs_play_count ON songs(play_count);
+CREATE INDEX idx_books_author_title ON sobooksngs(author, title);
+CREATE INDEX idx_books_year ON books(year);
+CREATE INDEX idx_books_read_count ON books(read_count);
