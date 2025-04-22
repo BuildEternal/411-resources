@@ -6,7 +6,7 @@ from config import ProductionConfig
 
 from readinglist.db import db
 from readinglist.models.book_model import Books
-from final.readinglist.readinglist.models.readinglist_model import ReadingListModel
+from readinglist.models.readinglist_model import ReadingListModel
 from readinglist.models.user_model import Users
 from readinglist.utils.logger import configure_logger
 

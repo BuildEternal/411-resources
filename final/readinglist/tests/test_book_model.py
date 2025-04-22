@@ -94,7 +94,7 @@ def test_get_book_by_compound_key_not_found(app):
 def test_delete_book_by_id(session, book_mockingbird):
     """Test deleting a book by ID."""
     Books.delete_book(book_mockingbird.id)
-    assert session.query(Books).get(book_mockingbird.id) is None
+    assert session.get(Books, book_mockingbird.id) is None
 
 
 def test_delete_book_not_found(app):

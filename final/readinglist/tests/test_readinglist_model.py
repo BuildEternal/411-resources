@@ -1,7 +1,7 @@
 import pytest
 
-from final.readinglist.readinglist.models.readinglist_model import ReadingListModel
-from final.readinglist.readinglist.models.book_model import Books
+from readinglist.models.readinglist_model import ReadingListModel
+from readinglist.models.book_model import Books
 
 
 @pytest.fixture()
@@ -50,7 +50,7 @@ def sample_reading_list(book_mockingbird, book_1984):
 def test_add_book_to_reading_list(readinglist_model, book_mockingbird, mocker):
     """Test adding a book to the reading list."""
     mocker.patch(
-        "final.readinglist.readinglist.models.readinglist_model.Books.get_book_by_id",
+        "readinglist.models.readinglist_model.Books.get_book_by_id",
         return_value=book_mockingbird
     )
     readinglist_model.add_book_to_reading_list(1)
@@ -61,7 +61,7 @@ def test_add_book_to_reading_list(readinglist_model, book_mockingbird, mocker):
 def test_add_duplicate_book_to_reading_list(readinglist_model, book_mockingbird, mocker):
     """Test error when adding a duplicate book to the reading list by ID."""
     mocker.patch(
-        "final.readinglist.readinglist.models.readinglist_model.Books.get_book_by_id",
+        "readinglist.models.readinglist_model.Books.get_book_by_id",
         side_effect=[book_mockingbird, book_mockingbird]
     )
     readinglist_model.add_book_to_reading_list(1)
@@ -72,7 +72,7 @@ def test_add_duplicate_book_to_reading_list(readinglist_model, book_mockingbird,
 def test_remove_book_by_book_id(readinglist_model, mocker):
     """Test removing a book from the reading list by book_id."""
     mocker.patch(
-        "final.readinglist.readinglist.models.readinglist_model.Books.get_book_by_id",
+        "readinglist.models.readinglist_model.Books.get_book_by_id",
         return_value=book_mockingbird
     )
     readinglist_model.reading_list = [1, 2]
@@ -108,7 +108,7 @@ def test_clear_reading_list(readinglist_model):
 def test_move_book_to_selection_number(readinglist_model, sample_reading_list, mocker):
     """Test moving a book to a specific selection number in the reading list."""
     mocker.patch(
-        "final.readinglist.readinglist.models.readinglist_model.Books.get_book_by_id",
+        "readinglist.models.readinglist_model.Books.get_book_by_id",
         side_effect=sample_reading_list
     )
 
@@ -122,7 +122,7 @@ def test_move_book_to_selection_number(readinglist_model, sample_reading_list, m
 def test_swap_books_in_reading_list(readinglist_model, sample_reading_list, mocker):
     """Test swapping the positions of two books in the reading list."""
     mocker.patch(
-        "final.readinglist.readinglist.models.readinglist_model.Books.get_book_by_id",
+        "readinglist.models.readinglist_model.Books.get_book_by_id",
         side_effect=sample_reading_list
     )
 
@@ -136,7 +136,7 @@ def test_swap_books_in_reading_list(readinglist_model, sample_reading_list, mock
 def test_swap_book_with_itself(readinglist_model, book_mockingbird, mocker):
     """Test swapping the position of a book with itself raises an error."""
     mocker.patch(
-        "final.readinglist.readinglist.models.readinglist_model.Books.get_book_by_id",
+        "readinglist.models.readinglist_model.Books.get_book_by_id",
         side_effect=[book_mockingbird, book_mockingbird]
     )
     readinglist_model.reading_list.append(1)
@@ -148,7 +148,7 @@ def test_swap_book_with_itself(readinglist_model, book_mockingbird, mocker):
 def test_move_book_to_end(readinglist_model, sample_reading_list, mocker):
     """Test moving a book to the end of the reading list."""
     mocker.patch(
-        "final.readinglist.readinglist.models.readinglist_model.Books.get_book_by_id",
+        "readinglist.models.readinglist_model.Books.get_book_by_id",
         side_effect=sample_reading_list
     )
 
@@ -161,7 +161,7 @@ def test_move_book_to_end(readinglist_model, sample_reading_list, mocker):
 def test_move_book_to_beginning(readinglist_model, sample_reading_list, mocker):
     """Test moving a book to the beginning of the reading list."""
     mocker.patch(
-        "final.readinglist.readinglist.models.readinglist_model.Books.get_book_by_id",
+        "readinglist.models.readinglist_model.Books.get_book_by_id",
         side_effect=sample_reading_list
     )
 
@@ -177,7 +177,7 @@ def test_move_book_to_beginning(readinglist_model, sample_reading_list, mocker):
 def test_get_book_by_selection_number(readinglist_model, book_mockingbird, mocker):
     """Test retrieving a book from the reading list by selection number."""
     mocker.patch(
-        "final.readinglist.readinglist.models.readinglist_model.Books.get_book_by_id",
+        "readinglist.models.readinglist_model.Books.get_book_by_id",
         return_value=book_mockingbird
     )
     readinglist_model.reading_list.append(1)
@@ -194,7 +194,7 @@ def test_get_book_by_selection_number(readinglist_model, book_mockingbird, mocke
 def test_get_all_books(readinglist_model, sample_reading_list, mocker):
     """Test retrieving all books from the reading list."""
     mocker.patch(
-        "final.readinglist.readinglist.models.readinglist_model.ReadingListModel._get_book_from_cache_or_db",
+        "readinglist.models.readinglist_model.ReadingListModel._get_book_from_cache_or_db",
         side_effect=sample_reading_list
     )
 
@@ -210,7 +210,7 @@ def test_get_all_books(readinglist_model, sample_reading_list, mocker):
 def test_get_book_by_book_id(readinglist_model, book_mockingbird, mocker):
     """Test retrieving a book from the reading list by book ID."""
     mocker.patch(
-        "final.readinglist.readinglist.models.readinglist_model.Books.get_book_by_id",
+        "readinglist.models.readinglist_model.Books.get_book_by_id",
         return_value=book_mockingbird
     )
     readinglist_model.reading_list.append(1)
@@ -228,7 +228,7 @@ def test_get_book_by_book_id(readinglist_model, book_mockingbird, mocker):
 def test_get_current_book(readinglist_model, book_mockingbird, mocker):
     """Test retrieving the current book from the reading list."""
     mocker.patch(
-        "final.readinglist.readinglist.models.readinglist_model.Books.get_book_by_id",
+        "readinglist.models.readinglist_model.Books.get_book_by_id",
         return_value=book_mockingbird
     )
 
@@ -243,17 +243,17 @@ def test_get_current_book(readinglist_model, book_mockingbird, mocker):
     assert current_book.genre == 'Southern Gothic'
 
 
-def test_reading_list_length(readinglist_model):
+def test_get_reading_list_length(readinglist_model):
     """Test getting the length of the reading list."""
     readinglist_model.reading_list.extend([1, 2])
     assert readinglist_model.get_reading_list_length() == 2, \
         "Expected reading list length to be 2"
 
 
-def test_reading_list_page_count(readinglist_model, sample_reading_list, mocker):
+def test_get_reading_list_page_count(readinglist_model, sample_reading_list, mocker):
     """Test getting the total pages of the reading list."""
     mocker.patch(
-        "final.readinglist.readinglist.models.readinglist_model.ReadingListModel._get_book_from_cache_or_db",
+        "readinglist.models.readinglist_model.ReadingListModel._get_book_from_cache_or_db",
         side_effect=sample_reading_list
     )
     readinglist_model.reading_list.extend([1, 2])
@@ -283,7 +283,7 @@ def test_check_if_empty_empty_reading_list(readinglist_model):
 def test_validate_book_id(readinglist_model, mocker):
     """Test validate_book_id does not raise error for valid book ID."""
     mocker.patch(
-        "final.readinglist.readinglist.models.readinglist_model.ReadingListModel._get_book_from_cache_or_db",
+        "readinglist.models.readinglist_model.ReadingListModel._get_book_from_cache_or_db",
         return_value=True
     )
 
@@ -297,11 +297,11 @@ def test_validate_book_id(readinglist_model, mocker):
 def test_validate_book_id_no_check_in_reading_list(readinglist_model, mocker):
     """Test validate_book_id does not raise error when check_in_list=False."""
     mocker.patch(
-        "final.readinglist.readinglist.models.readinglist_model.ReadingListModel._get_book_from_cache_or_db",
+        "readinglist.models.readinglist_model.ReadingListModel._get_book_from_cache_or_db",
         return_value=True
     )
     try:
-        readinglist_model.validate_book_id(1, check_in_list=False)
+        readinglist_model.validate_book_id(1, check_in_reading_list=False)
     except ValueError:
         pytest.fail("validate_book_id raised ValueError unexpectedly for valid book ID")
 
@@ -318,7 +318,7 @@ def test_validate_book_id_invalid(readinglist_model):
 def test_validate_book_id_not_in_reading_list(readinglist_model, book_1984, mocker):
     """Test validate_book_id raises error for book ID not in reading list."""
     mocker.patch(
-        "final.readinglist.readinglist.models.readinglist_model.Books.get_book_by_id",
+        "readinglist.models.readinglist_model.Books.get_book_by_id",
         return_value=book_1984
     )
     readinglist_model.reading_list.append(1)
@@ -353,10 +353,10 @@ def test_validate_selection_number_invalid(readinglist_model, selection_number, 
 def test_read_current_book(readinglist_model, sample_reading_list, mocker):
     """Test reading the current book."""
     mock_update_read_count = mocker.patch(
-        "final.readinglist.readinglist.models.readinglist_model.Books.update_read_count"
+        "readinglist.models.readinglist_model.Books.update_read_count"
     )
     mocker.patch(
-        "final.readinglist.readinglist.models.readinglist_model.Books.get_book_by_id",
+        "readinglist.models.readinglist_model.Books.get_book_by_id",
         side_effect=sample_reading_list
     )
 
@@ -397,7 +397,7 @@ def test_go_to_random_selection(readinglist_model, mocker):
     """Test that go_to_random_selection sets a valid random selection number."""
     readinglist_model.reading_list.extend([1, 2])
 
-    mocker.patch("final.readinglist.readinglist.models.readinglist_model.get_random", return_value=2)
+    mocker.patch("readinglist.models.readinglist_model.get_random", return_value=2)
 
     readinglist_model.go_to_random_selection()
     assert readinglist_model.current_selection_number == 2, "Selection number should be random value"
@@ -406,10 +406,10 @@ def test_go_to_random_selection(readinglist_model, mocker):
 def test_read_entire_reading_list(readinglist_model, sample_reading_list, mocker):
     """Test reading the entire reading list."""
     mock_update_read_count = mocker.patch(
-        "final.readinglist.readinglist.models.readinglist_model.Books.update_read_count"
+        "readinglist.models.readinglist_model.Books.update_read_count"
     )
     mocker.patch(
-        "final.readinglist.readinglist.models.readinglist_model.ReadingListModel._get_book_from_cache_or_db",
+        "readinglist.models.readinglist_model.ReadingListModel._get_book_from_cache_or_db",
         side_effect=sample_reading_list
     )
 
@@ -426,10 +426,10 @@ def test_read_entire_reading_list(readinglist_model, sample_reading_list, mocker
 def test_read_rest_of_reading_list(readinglist_model, sample_reading_list, mocker):
     """Test reading from the current position to the end of the reading list."""
     mock_update_read_count = mocker.patch(
-        "final.readinglist.readinglist.models.readinglist_model.Books.update_read_count"
+        "readinglist.models.readinglist_model.Books.update_read_count"
     )
     mocker.patch(
-        "final.readinglist.readinglist.models.readinglist_model.ReadingListModel._get_book_from_cache_or_db",
+        "readinglist.models.readinglist_model.ReadingListModel._get_book_from_cache_or_db",
         side_effect=sample_reading_list
     )
 

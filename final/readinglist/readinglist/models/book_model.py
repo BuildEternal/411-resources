@@ -115,7 +115,7 @@ class Books(db.Model):
         logger.info(f"Received request to delete book with ID {book_id}")
 
         try:
-            book = cls.query.get(book_id)
+            book = db.session.get(cls, book_id)
             if not book:
                 logger.warning(f"Attempted to delete non-existent book with ID {book_id}")
                 raise ValueError(f"Book with ID {book_id} not found")
@@ -147,7 +147,7 @@ class Books(db.Model):
         logger.info(f"Attempting to retrieve book with ID {book_id}")
 
         try:
-            book = cls.query.get(book_id)
+            book = db.session.get(cls, book_id)
 
             if not book:
                 logger.info(f"Book with ID {book_id} not found")
@@ -274,7 +274,7 @@ class Books(db.Model):
         logger.info(f"Attempting to update read count for book with ID {self.id}")
 
         try:
-            book = Books.query.get(self.id)
+            book = db.session.get(Books, self.id)
             if not book:
                 logger.warning(f"Cannot update read count: Book with ID {self.id} not found.")
                 raise ValueError(f"Book with ID {self.id} not found")
